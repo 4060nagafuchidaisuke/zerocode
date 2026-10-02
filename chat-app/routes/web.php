@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Models\Message;
-use App\Controller\ChatController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,5 +24,11 @@ Route::get('/chat', function (){
 });
 
 // 入力結果をデータベースへ渡す。
-Route::POST('/chat', [ChatController::class, 'store']);
+Route::post('/chat', [ChatController::class, 'store']);
+
+// 削除処理
+Route::delete('/messages/{message}', [ChatController::class, 'destroy']);
+
+// 編集画面
+Route::get('/messages/{message}/edit', [ChatController::class, 'edit']);
 

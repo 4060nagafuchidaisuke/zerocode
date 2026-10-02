@@ -18,6 +18,14 @@
                 <div class="bg-white rounded-2xl px-4 py-2 inline-block max-w-[75%] shadow-sm">
                     <p>{{ $message -> body }}</p>
                 </div>
+                <div class="mt-1">
+                    <a href="/messages/{{ $message->id }}/edit" class="text-xs text-gray-500">編集</a>
+                    <form action="/messages/{{ $message->id }}" method="POST" class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-xs text-red-400">削除</button>
+                    </form>
+                </div>
             </div>
         @endforeach
         </main>
@@ -26,9 +34,18 @@
         <footer class="bg-white p-3">
             <form action="/chat" method="POST" class="flex gap-2">
                 @csrf
-                <input type=text name="body" placeholder="メッセージを入力" class="flex-1 bg-gray-100 rounded-full px-4 py-2">
+                <input type="text" name="name" placeholder="名前" value="{{ old('name') }}"
+                class="w-24 shrink-0 bg-gray-100 rounded-full px-4 py-2">
+                <input type="text" name="body" placeholder="メッセージを入力" value="{{ old('body') }}"
+                class="flex-1 bg-gray-100 rounded-full px-4 py-2">
                 <button type="submit" class="shrink-0 bg-green-500 text-white font-bold rounded-full px-5 py-2">送信</button>
             </form>
+            @error('name')
+                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+            @enderror
+            @error('body')
+                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+            @enderror
         </footer>
     </div>
 </body>
