@@ -23,12 +23,13 @@
         </main>
 
         <!-- footer:メッセージ入力欄の作成 -->
-        <foter class="bg-white p-3">
+        <footer class="bg-white p-3">
             <form action="/chat" method="POST" class="flex gap-2">
                 @csrf
                 <input type=text name="body" placeholder="メッセージを入力" class="flex-1 bg-gray-100 rounded-full px-4 py-2">
                 <button type="submit" class="shrink-0 bg-green-500 text-white font-bold rounded-full px-5 py-2">送信</button>
             </form>
+        </footer>
     </div>
 </body>
 </html>
