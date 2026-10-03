@@ -2,12 +2,11 @@
 <html lang='ja'>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-svale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>メッセージの編集</title>
-    <scriptrc="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-gray-50">
-   <body class="bg-gray-50">
   <div class="max-w-md mx-auto h-screen flex flex-col bg-gray-200 shadow-lg">
 
     <header class="bg-white px-4 py-3 flex items-center gap-3 shadow-sm">

@@ -15,16 +15,18 @@
         @foreach ($talks as $message)
             <div class="mb-3">
                 <p class="text-xs text-gray-500 mb-1">{{ $message -> name }}</p>
-                <div class="bg-white rounded-2xl px-4 py-2 inline-block max-w-[75%] shadow-sm">
-                    <p>{{ $message -> body }}</p>
-                </div>
-                <div class="mt-1">
-                    <a href="/messages/{{ $message->id }}/edit" class="text-xs text-gray-500">編集</a>
-                    <form action="/messages/{{ $message->id }}" method="POST" class="inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="text-xs text-red-400">削除</button>
-                    </form>
+                <div class="inline-block max-w-[75%]">
+                    <div class="bg-white rounded-2xl px-4 py-2 shadow-sm">
+                        <p>{{ $message -> body }}</p>
+                    </div>
+                    <div class="mt-1 flex justify-between">
+                        <a href="/messages/{{ $message->id }}/edit" class="text-xs text-gray-500">編集</a>
+                        <form action="/messages/{{ $message->id }}" method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-xs text-red-400">削除</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         @endforeach

@@ -32,3 +32,6 @@ Route::delete('/messages/{message}', [ChatController::class, 'destroy']);
 // 編集画面
 Route::get('/messages/{message}/edit', [ChatController::class, 'edit']);
 
+// 更新処理
+Route::patch('/messages/{message}', [ChatController::class, 'update']);
+
