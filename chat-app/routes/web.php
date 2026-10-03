@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\RoomController;
 use App\Models\Message;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,7 +21,7 @@ Route::get('/chat', function (){
     // Models/Message.phpの中のクラス「Message」を呼びだす（）
     $messages = Message::all();
 
-    // chat.bladeの$messageの中身
+    // chat.blade.phpの$messageの中身
     return view('chat', ['talks' => $messages]);
 });
 
@@ -35,3 +37,11 @@ Route::get('/messages/{message}/edit', [ChatController::class, 'edit']);
 // 更新処理
 Route::patch('/messages/{message}', [ChatController::class, 'update']);
 
+// ルーム一覧へ移動
+Route::get('/rooms',[RoomController::class, 'index']);
+
+// ルームの中を見る
+Route::get('/rooms/{room}', [RoomController::class, 'show']);
+
+// 各ルームの作成
+Route::post('/rooms/{room}', [ChatController::class, 'store']);
