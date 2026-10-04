@@ -10,17 +10,19 @@ class ChatController extends Controller
 {
     public function store(Request $request, Room $room)
     {
+        //
+        if (session('nickname') === null) {
+            return redirect('/enter');
+        }
         $validated = $request->validate([
-            'name' => 'required',
             'body' => 'required',
         ],[
-            'name.required' => '名前を入力してください',
             'body.required' => 'メッセージを入力してください',
 
         ]);
 
         Message::create([
-            'name' => $validated['name'],
+            'name' => session('nickname'),
             'body' => $validated['body'],
             'room_id' => $room->id,
         ]);

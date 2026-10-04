@@ -2,31 +2,13 @@
 
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\RoomController;
-use App\Models\Message;
-
+use App\Http\Controllers\EnterController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// 初めましての表示
-Route::get('/hello', function (){
-    return '初めまして！';
-});
-
-// チャット欄一覧
-Route::get('/chat', function (){
-    
-    // Models/Message.phpの中のクラス「Message」を呼びだす（）
-    $messages = Message::all();
-
-    // chat.blade.phpの$messageの中身
-    return view('chat', ['talks' => $messages]);
-});
-
-// 入力結果をデータベースへ渡す。
-Route::post('/chat', [ChatController::class, 'store']);
 
 // 削除処理
 Route::delete('/messages/{message}', [ChatController::class, 'destroy']);
@@ -45,3 +27,9 @@ Route::get('/rooms/{room}', [RoomController::class, 'show']);
 
 // 各ルームの作成
 Route::post('/rooms/{room}', [ChatController::class, 'store']);
+
+// チャット欄の入り口
+Route::get('/enter', [EnterController::class, 'show']);
+
+// ニックネームでログイン
+Route::post('/enter', [EnterController::class, 'store']);

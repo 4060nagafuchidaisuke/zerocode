@@ -10,6 +10,11 @@ class RoomController extends Controller
     // ルームの画面へ遷移させる
     public function index()
     {
+        //
+        if (session('nickname') === null) {
+            return redirect('/enter');
+        }
+        
         // Models/Room.phpの中のクラス「Room」を呼びだす（roomテーブルから、全部の行を取り出す→今は「'name'」だけ）
         $rooms = Room::all();
 
@@ -20,6 +25,11 @@ class RoomController extends Controller
     // コメントが入力されたら画面が更新される
     public function show(Room $room)
     {
+        //
+        if (session('nickname') === null) {
+            return redirect('/enter');
+        }
+
         // Models/Message.phpの中のクラス「Message」を呼びだす。
         // （Messageテーブルから、全部の行を取り出す→['name', 'body', 'room_id']）
         $messages = $room -> messages;
