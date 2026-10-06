@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\EnterController;
+use App\Http\Controllers\ReactionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,3 +34,6 @@ Route::get('/enter', [EnterController::class, 'show']);
 
 // ニックネームでログイン
 Route::post('/enter', [EnterController::class, 'store']);
+
+// リアクションを付ける・外す
+Route::post('/messages/{message}/reactions', [ReactionController::class, 'store']);

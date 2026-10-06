@@ -40,6 +40,19 @@
               <div class="bg-white rounded-2xl px-4 py-2 inline-block shadow-sm break-words">
                 <p>{{ $message->body }}</p>
               </div>
+              <div class="mt-1">
+                @foreach (['😀', '😂', '👍', '❤️', '🎉', '😢'] as $emoji)
+                  @php
+                    $count = $message->reactions->where('emoji', $emoji)->count();
+                    $mine = $message->reactions->where('emoji', $emoji)->where('name', session('nickname'))->isNotEmpty();
+                  @endphp
+                  <form action="/messages/{{ $message->id }}/reactions" method="POST" class="inline">
+                    @csrf
+                    <input type="hidden" name="emoji" value="{{ $emoji }}">
+                    <button type="submit" class="{{ $mine ? 'bg-orange-400' : 'bg-white' }} border border-gray-300 rounded-full px-2 h-8 text-sm">{{ $emoji }}@if ($count > 0) {{ $count }}@endif</button>
+                  </form>
+                @endforeach
+              </div>
             </div>
           </div>
         @endif
