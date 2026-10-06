@@ -7,7 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-gray-50">
-  <div class="max-w-md mx-auto h-screen flex flex-col bg-gray-200 shadow-lg">
+  <div class="max-w-md mx-auto h-dvh flex flex-col bg-gray-200 shadow-lg">
 
     <header class="bg-white px-4 py-3 flex items-center gap-3 shadow-sm">
       <a href="/rooms/{{ $message->room_id }}" class="text-sm text-gray-500">← もどる</a>

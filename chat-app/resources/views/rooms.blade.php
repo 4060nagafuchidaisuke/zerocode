@@ -7,7 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-gray-50">
-  <div class="max-w-md mx-auto h-screen flex flex-col bg-gray-200 shadow-lg">
+  <div class="max-w-md mx-auto h-dvh flex flex-col bg-gray-200 shadow-lg">
 
     <header class="bg-white px-4 py-3 flex items-center justify-between shadow-sm">
       <h1 class="font-bold">ルーム一覧</h1>
@@ -17,7 +17,7 @@
     <main class="flex-1 overflow-y-auto p-4">
       @foreach ($rooms as $room)
         <a href="/rooms/{{ $room->id }}"
-          class="block bg-white rounded-2xl px-4 py-3 shadow-sm mb-3">
+          class="block bg-white rounded-2xl px-4 py-3 shadow-sm mb-3 break-words">
           {{ $room->name }}
         </a>
       @endforeach
