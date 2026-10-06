@@ -33,21 +33,30 @@
             </div>
           </div>
         @else
-          <div class="mb-3">
-            <p class="text-xs text-gray-500 mb-1">{{ $message->name }} {{ $message->created_at->format('H:i') }}</p>
-            <div class="bg-white rounded-2xl px-4 py-2 inline-block max-w-[75%] shadow-sm break-words">
-              <p>{{ $message->body }}</p>
+          <div class="mb-3 flex items-start gap-2">
+            <div class="shrink-0 w-8 h-8 rounded-full bg-gray-400 text-white text-sm flex items-center justify-center">{{ mb_substr($message->name, 0, 1) }}</div>
+            <div class="min-w-0 max-w-[75%]">
+              <p class="text-xs text-gray-500 mb-1">{{ $message->name }} {{ $message->created_at->format('H:i') }}</p>
+              <div class="bg-white rounded-2xl px-4 py-2 inline-block shadow-sm break-words">
+                <p>{{ $message->body }}</p>
+              </div>
             </div>
           </div>
         @endif
       @endforeach
     </main>
     <footer class="bg-white p-3">
-      <form action="/rooms/{{ $room->id }}" method="POST" class="flex gap-2">
+      <form action="/rooms/{{ $room->id }}" method="POST" class="flex flex-wrap gap-2">
         @csrf
         <input type="text" name="body" placeholder="メッセージを入力" value="{{ old('body') }}"
           class="flex-1 bg-gray-100 rounded-full px-4 py-2">
         <button type="submit" class="shrink-0 bg-yellow-400 text-black font-bold rounded-full px-5 py-2">送信</button>
+        <div class="flex gap-2 w-full">
+          @foreach (['😀', '😂', '👍', '❤️', '🎉', '😢'] as $emoji)
+            <button type="button" data-emoji="{{ $emoji }}"
+              class="emoji-button bg-orange-400 rounded-full w-10 h-10">{{ $emoji }}</button>
+          @endforeach
+        </div>
       </form>
       @error('body')
         <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
@@ -59,6 +68,15 @@
     // ページを開いたとき、メッセージ一覧を一番下までスクロールする
     const messages = document.getElementById('messages');
     messages.scrollTop = messages.scrollHeight;
+
+    // 絵文字ボタンを押したら、入力欄の最後に絵文字を足す
+    const input = document.querySelector('input[name="body"]');
+    document.querySelectorAll('.emoji-button').forEach((button) => {
+      button.addEventListener('click', () => {
+        input.value += button.dataset.emoji;
+        input.focus();
+      });
+    });
 
     // 5秒ごとに、メッセージ一覧の部分だけを入れ替える
     setInterval(async () => {
