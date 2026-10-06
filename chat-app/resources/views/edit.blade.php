@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>メッセージの編集</title>
+  <title>ながだいとゆかいな仲間のつぶやき</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-gray-50">
@@ -23,7 +23,7 @@
         @error('body')
           <p class="text-red-500 text-sm mb-3">{{ $message }}</p>
         @enderror
-        <button type="submit" class="w-full bg-green-500 text-white font-bold rounded-full px-4 py-2">更新する</button>
+        <button type="submit" class="w-full bg-yellow-400 text-black font-bold rounded-full px-4 py-2">更新する</button>
       </form>
     </main>
 

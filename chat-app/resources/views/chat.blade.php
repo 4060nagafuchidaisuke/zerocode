@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>チャット</title>
+  <title>ながだいとゆかいな仲間のつぶやき</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-gray-50">
@@ -20,7 +20,7 @@
         @if ($message->name === session('nickname'))
           <div class="mb-3 text-right">
             <p class="text-xs text-gray-500 mb-1">{{ $message->name }} {{ $message->created_at->format('H:i') }}</p>
-            <div class="bg-green-500 text-white rounded-2xl px-4 py-2 inline-block max-w-[75%] text-left break-words">
+            <div class="bg-orange-400 text-black rounded-2xl px-4 py-2 inline-block max-w-[75%] text-left break-words">
               <p>{{ $message->body }}</p>
             </div>
             <div class="mt-1">
@@ -47,7 +47,7 @@
         @csrf
         <input type="text" name="body" placeholder="メッセージを入力" value="{{ old('body') }}"
           class="flex-1 bg-gray-100 rounded-full px-4 py-2">
-        <button type="submit" class="shrink-0 bg-green-500 text-white font-bold rounded-full px-5 py-2">送信</button>
+        <button type="submit" class="shrink-0 bg-yellow-400 text-black font-bold rounded-full px-5 py-2">送信</button>
       </form>
       @error('body')
         <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
